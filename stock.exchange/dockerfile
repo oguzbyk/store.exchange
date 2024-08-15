@@ -1,0 +1,6 @@
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /app
+COPY target/stock.exchange-0.0.1-SNAPSHOT.jar /app/stock.exchange-0.0.1-SNAPSHOT.jar
+
+CMD ["java", "-jar", "stock.exchange-0.0.1-SNAPSHOT.jar"]

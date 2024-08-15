@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ing-hub:
+    image: stockexchange
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: stockexchange-container
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:./testdb
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_DATASOURCE_PLATFORM=h2
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.h2.Driver
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.H2Dialect
+    depends_on:
+      - h2-db
+
+  h2-db:
+    image: oscarfonts/h2
+    ports:
+      - "1521:1521"
+    container_name: h2-db
+    environment:
+      - H2_OPTIONS=-tcp -tcpAllowOthers -tcpPort 1521 -baseDir /opt/h2-data

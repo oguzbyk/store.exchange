@@ -21,7 +21,7 @@ This is a Spring Boot-based application for managing stock exchanges and stocks.
 - Maven
 - Docker
 - MapStruct
-- Lombok
+- Spring Cache
 - Mockito and JUnit 5 for testing
 
 ## Getting Started
